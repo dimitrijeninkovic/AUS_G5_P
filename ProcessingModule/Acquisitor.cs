@@ -56,40 +56,7 @@ namespace ProcessingModule
         /// </summary>
 		private void Acquisition_DoWork()
         {
-            ushort counter = 0;
-
-            while (true)
-            {
-                acquisitionTrigger.WaitOne();
-
-                foreach (IConfigItem item in configuration.GetConfigurationItems())
-                {
-                    // analogne (1100 i 4300) - svaki put (1s)
-                    if (item.StartAddress == 1100 || item.StartAddress == 4300)
-                    {
-                        processingManager.ExecuteReadCommand(
-                            item,
-                            counter,
-                            90,
-                            item.StartAddress,
-                            item.NumberOfRegisters
-                        );
-                    }
-                    // digitalne (1400, 1402, 1405, 1406) - svaki drugi put (2s)
-                    else if (counter % 2 == 0)
-                    {
-                        processingManager.ExecuteReadCommand(
-                            item,
-                            counter,
-                            90,
-                            item.StartAddress,
-                            item.NumberOfRegisters
-                        );
-                    }
-                }
-
-                counter++;
-            }
+            //TO DO: IMPLEMENT
         }
 
         #endregion Private Methods
